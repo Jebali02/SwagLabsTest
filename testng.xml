@@ -9,7 +9,7 @@
 	<test name="TestOnChrome">
 		<parameter name="browserName" value="chrome"></parameter>
 		<classes>
-			<class name="Tests.TestSwagLabs"></class>
+			<class name="Tests.ConnexionTest"></class>
 		</classes>
 	</test> 
 	
