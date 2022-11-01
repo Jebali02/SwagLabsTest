@@ -26,9 +26,10 @@ public class ExtentReporterNG implements IReporter {
 		extent = new ExtentReports(outputDirectory + File.separator
 				+ "Extent.html", true);
 
+	
 		for (ISuite suite : suites) {
 			Map<String, ISuiteResult> result = suite.getResults();
-
+			
 			for (ISuiteResult r : result.values()) {
 				ITestContext context = r.getTestContext();
 

@@ -1,6 +1,7 @@
 SourceFireFox=/src/test/resources/drivers/geckodriver/geckodriver.exe
 SourceChrome=/src/test/resources/drivers/chromedriver/chromedriver.exe
 SourceIe=/src/test/resources/drivers/InternetExplorerDriver/IEDriverServer.exe
+SourceEdge=/src/test/resources/drivers/edge/msedgedriver.exe
 URL= https://www.saucedemo.com/
 UserName=standard_user
 LockedOutUser=locked_out_user
@@ -14,4 +15,7 @@ PageTitle=Checkout: Overview
 Price=8.63
 ThankYouMessage=THANK YOU FOR YOUR ORDER
 OrderDispatchedMessage=Your order has been dispatched, and will arrive just as fast as the pony can get there!
-ErrorMsg=Epic sadface: Sorry, this user has been locked out.
+LoginLockedOutUserMsg=Epic sadface: Sorry, this user has been locked out.
+InvalidUserName=failusername
+InvalidPassword=FailPassword
+InvalidPasswordOrUsernameMsg=Epic sadface: Username and password do not match any user in this service

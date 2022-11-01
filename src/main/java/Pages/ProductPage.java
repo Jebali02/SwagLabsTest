@@ -8,6 +8,8 @@ public class ProductPage extends BasePage{
 	By productsITEM=By.xpath("//div[@class='inventory_item_name']");
 	By BasketBTN = By.xpath("//a[@class='shopping_cart_link']");
 	By PageName=By.xpath("//span[@class='title']");
+	By MenuBTN=By.id("react-burger-menu-btn");
+	By LogOutBTN = By.id("logout_sidebar_link");
 	utils utils=new utils();
 	
 
@@ -34,5 +36,12 @@ public class ProductPage extends BasePage{
 	}
 	public void ClickOnBasket() {
 		ClickOnElement(BasketBTN);
+	}
+	public void ClickMenuBTN () {
+		ClickOnElement(MenuBTN);
+	}
+	
+	public void ClickLogoutBTN () {
+		ClickOnElement(LogOutBTN);
 	}
 }
