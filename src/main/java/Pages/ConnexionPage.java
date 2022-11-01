@@ -12,7 +12,8 @@ public class ConnexionPage extends BasePage {
 	By PasswordField = By.id("password");
 	By LoginBTN = By.id("login-button");
 	By ErrorMsg= By.xpath("//h3[@data-test='error']");
-	
+	By InvalidPasswordOrUsername= By.xpath("//h3[@data-test='error']");
+
 	@Test
 	public void AddUserName (String username) {
 		SendKey(username, UserNameField);
@@ -23,9 +24,14 @@ public class ConnexionPage extends BasePage {
 	public void ClickLogin () {
 		ClickOnElement(LoginBTN);
 	}	
-	public boolean IsErrorMsgVisible(String errormsg) {
-		 return getText(ErrorMsg).equalsIgnoreCase(errormsg);
-		
+	public boolean IsErrorMsgVisible (String errormsg) {
+		return getText(ErrorMsg).equalsIgnoreCase(errormsg);
+
 	}
-	
+	public boolean IsPasswordOrUsernameValid (String passwordorusernameinvalid) {
+		return getText(InvalidPasswordOrUsername).equalsIgnoreCase(passwordorusernameinvalid);
+
+	}
+
+
 }
