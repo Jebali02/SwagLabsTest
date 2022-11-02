@@ -10,45 +10,32 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-
 public class BasePage {
 
 	static public WebDriver driver = null;
 	static Properties prop = new Properties(); 
+	public static String browser=System.getProperty("browser");
+
 	public static Logger logger=LogManager.getLogger(BasePage.class);
 
 
-
-	@Parameters({"browserName"})
 	@BeforeClass
-	public void setUp(String browserName) {
+	public void setUp() {
 		logger.info("Starting test - setup");
-		logger.info("Test runned on :" + browserName);
+		logger.info("Test runned on :" + browser);
 
 		String projectPath = System.getProperty("user.dir");
-		switch (browserName) {
+		switch (browser) {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", projectPath +readPropertiesFile("SourceChrome"));
 			ChromeOptions optionsChrome = new ChromeOptions();
@@ -64,7 +51,7 @@ public class BasePage {
 		case "edge":
 			System.setProperty("webdriver.edge.driver", projectPath +readPropertiesFile("SourceEdge"));
 			EdgeOptions edgeOptions = new EdgeOptions();
-			edgeOptions.addArguments("--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage");
+			edgeOptions.addArguments("--headless","--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage");
 			driver = new EdgeDriver(edgeOptions); 
 			break;
 
@@ -126,9 +113,8 @@ public class BasePage {
 
 
 	@AfterClass
-	public void teadown() throws InterruptedException {
+	public void teadown()  {
 		System.out.println("teadown");
-		Thread.sleep(5000);
 		driver.quit();
 	}
 }
