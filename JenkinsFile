@@ -6,14 +6,20 @@ pipeline {
           choices: ['chrome', 'firefox', 'edge'],
           description: 'Passing the browser name'
         )
+         choice(
+          name: 'Environnements',
+          choices: ['dev', 'qa', 'preprod','prod'],
+          description: 'Passing the environnement name'
+        )
       }
     stages {
         stage('Test') {
             steps {
                 echo 'Testing step'
                 echo " The browser is ${params.Browsers}"
-                bat 'mvn clean test -Dbrowser=${params.Browsers}'
-               
+                 echo " The browser is ${params.Environnements}"
+                bat 'mvn clean test -Denv=${params.Environnements} -Dbrowser=${params.Browsers}'
+                               
                 publishHTML target: [
 	                allowMissing: false,
 	                alwaysLinkToLastBuild: false,
@@ -24,6 +30,7 @@ pipeline {
              	]
              }       
         }      
+        
     }
      post {
         always {

@@ -25,15 +25,15 @@ public class BasePage {
 	static public WebDriver driver = null;
 	static Properties prop = new Properties(); 
 	public static String browser=System.getProperty("browser");
-
+	public static String ENV=System.getProperty("env");
 	public static Logger logger=LogManager.getLogger(BasePage.class);
 
-
+	
 	@BeforeClass
 	public void setUp() {
 		logger.info("Starting test - setup");
 		logger.info("Test runned on :" + browser);
-
+		logger.info("Test runned on the environnement  :" + ENV);
 		String projectPath = System.getProperty("user.dir");
 		switch (browser) {
 		case "chrome":
@@ -69,7 +69,25 @@ public class BasePage {
 		try {
 			//renvoi le Workspace
 			String projectPath =System.getProperty("user.dir");
-			InputStream input = new FileInputStream(projectPath+"/src/test/resources/Config/ConfigProperties");
+			InputStream input = null;
+			switch (ENV) {
+			case "dev":
+				input=new FileInputStream(projectPath+"/src/test/resources/Config/ConfigProperties-dev");
+				break;
+			case "preprod":
+				input=new FileInputStream(projectPath+"/src/test/resources/Config/ConfigProperties-preprod");
+				break;
+			case "prod":
+				input=new FileInputStream(projectPath+"/src/test/resources/Config/ConfigProperties-prod");
+				break;
+			case "qa":
+				input=new FileInputStream(projectPath+"/src/test/resources/Config/ConfigProperties-qa");
+				break;
+			default:
+				input=new FileInputStream(projectPath+"/src/test/resources/Config/ConfigProperties-qa");
+				break;
+			}
+			
 			prop.load(input);
 			param=prop.getProperty(property);   
 		} catch (Exception e) {

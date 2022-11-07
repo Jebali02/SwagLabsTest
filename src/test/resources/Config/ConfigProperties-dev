@@ -1,8 +1,8 @@
+URL= https://www.saucedemo.com/
 SourceFireFox=/src/test/resources/drivers/geckodriver/geckodriver.exe
 SourceChrome=/src/test/resources/drivers/chromedriver/chromedriver.exe
 SourceIe=/src/test/resources/drivers/InternetExplorerDriver/IEDriverServer.exe
 SourceEdge=/src/test/resources/drivers/edge/msedgedriver.exe
-URL= https://www.saucedemo.com/
 UserName=standard_user
 LockedOutUser=locked_out_user
 Password=secret_sauce
