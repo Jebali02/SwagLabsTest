@@ -65,6 +65,7 @@
           				</suiteXmlFiles>
           				<properties>
 	          				<key>browser</key>
+	          				<key>env</key>
           				</properties>
        				 </configuration>
       		</plugin>
