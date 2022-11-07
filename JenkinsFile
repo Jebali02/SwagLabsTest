@@ -13,8 +13,21 @@ pipeline {
                 echo 'Testing step'
                 echo " The browser is ${params.Browsers}"
                 bat 'mvn clean test -Dbrowser=${params.Browsers}'
-            }
-                
+               
+                publishHTML target: [
+	                allowMissing: false,
+	                alwaysLinkToLastBuild: false,
+		            keepAll: true,
+		            reportDir: 'target/surefire-reports',
+		            reportFiles: 'Extent.html',
+		            reportName: 'Report'
+             	]
+             }       
         }      
+    }
+     post {
+        always {
+            junit '**/target/surefire-reports/junitreports/*.xml'
+        }
     }
 }
